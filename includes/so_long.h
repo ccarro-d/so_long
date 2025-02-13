@@ -6,7 +6,7 @@
 /*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 14:36:17 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/12 22:02:10 by ccarro-d         ###   ########.fr       */
+/*   Updated: 2025/02/13 20:53:50 by ccarro-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,11 @@
 #endif
 
 # include "../libft/libft.h"
+# include "../MLX42/include/MLX42/MLX42.h"
 # include <errno.h>
 # include <fcntl.h>
 # include <sys/wait.h>
 
-# ifdef __linux__
-#  include "../minilibx-linux/mlx.h"
-# else
-#  include "../minilibx_opengl_20191021/mlx.h"
-# endif
 
 // Functions
 //void	print_error(char *error_explained, int error_code);

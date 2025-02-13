@@ -5,34 +5,31 @@ NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
+# Directories
 LIBFT_DIR = libft/
+MLX42_DIR = MLX42/
 
-# Checking OS
+# Library and flags
 UNAME_S := $(shell uname -s)
-
 ifeq ($(UNAME_S), Linux)
-    MLX_DIR = ./minilibx-linux
-    MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd
+    MLX_FLAGS = -L$(MLX42_DIR) -lmlx42 -ldl -lglfw -lm
 else
-    MLX_DIR = ./minilibx_opengl_20191021
-    MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
+    MLX_FLAGS = -L$(MLX42_DIR) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit
 endif
 
 # Sources
-SRC = src/so_long.c # Añade aquí tus archivos .c
-
+SRC = src/so_long.c # Añade aquí más archivos .c si tienes
 OBJS = $(SRC:.c=.o)
 
-# Linking
-INCLUDE = -I$(MLX_DIR) -I$(LIBFT_DIR)/includes -L$(LIBFT_DIR) -lft $(MLX_FLAGS)
+# Linking and building the executable
+INCLUDE = -I$(MLX42_DIR)/include/MLX42 -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft
 
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
-	@make -C $(MLX_DIR)
-	@$(CC) $(CFLAGS) $(OBJS) $(INCLUDE) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(INCLUDE) $(MLX_FLAGS) -o $(NAME)
 	@echo "✅ Compilation finished!"
 
-# Recompile object files if pipex.h changes  
+# Recompile object files if so_long.h changes
 $(OBJS): includes/so_long.h
 
 # Default target for compilation
@@ -40,12 +37,11 @@ all: $(NAME)
 
 # Compile object files
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(MLX42_DIR)/include/MLX42 -c $< -o $@
 
 # Clean objects
 clean:
 	@make clean -C $(LIBFT_DIR)
-	@make clean -C $(MLX_DIR)
 	rm -f $(OBJS)
 
 # Clean objects and executable
