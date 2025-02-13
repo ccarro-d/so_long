@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/12 22:15:33 by ccarro-d         ###   ########.fr       */
+/*   Updated: 2025/02/13 00:40:06 by cesar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,17 @@ int	main(void)
 	int		y;
 	int		x;
 
-	y = HEIGHT * 0.1;
-	x = WIDTH * 0.1;
 	mlx_connection = mlx_init(); // inicializa la conexión con el servidor gráfico y devuelve un puntero a la conexión
+	if (mlx_connection == NULL)
+		return (1);
 	mlx_window = mlx_new_window(mlx_connection, WIDTH, HEIGHT, "My window"); // crea una ventana y devuelve un puntero
+	if (mlx_window == NULL)
+	{
+		mlx_destroy_display(mlx_connection);
+		free(mlx_connection);
+		return (1);
+	}
+	y = HEIGHT * 0.1;
 	while (y < HEIGHT * 0.9)
 	{
 		x = WIDTH * 0.1;
