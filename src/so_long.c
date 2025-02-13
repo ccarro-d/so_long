@@ -6,7 +6,7 @@
 /*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/13 21:59:20 by ccarro-d         ###   ########.fr       */
+/*   Updated: 2025/02/13 22:33:52 by ccarro-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int main(void)
     mlx_image_to_window(mlx, img, 0, 0);
 
 	mlx_put_string(mlx, "My draw", WIDTH * 0.8, HEIGHT * 0.95); // escribe solamente en blanco
-
+    
 	 // Función para escribir texto en otro color, como el verde (0x00FF00FF)
     draw_text(img, WIDTH * 0.1, HEIGHT * 0.8, "My draw", 0x00FF00FF);
 
