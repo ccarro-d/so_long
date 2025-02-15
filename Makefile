@@ -8,26 +8,37 @@ CFLAGS = -Wall -Werror -Wextra
 # Directories
 LIBFT_DIR = libft/
 MLX42_DIR = MLX42/
+MLX42_BUILD_LINUX = $(MLX42_DIR)/build_linux/libmlx42.a
+MLX42_BUILD_MACOS = $(MLX42_DIR)/build_macos/libmlx42.a
 
-# Library and flags
+# Detecting the OS for MLX42 and GLFW
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
-    MLX_FLAGS = -L$(MLX42_DIR) -lmlx42 -ldl -lglfw -lm
+    MLX42_FLAGS = -L$(MLX42_DIR)/build_linux -lmlx42 -lglfw -lm -ldl
+    INCLUDE = -I$(MLX42_DIR)/include/MLX42 -I/usr/include -I$(LIBFT_DIR)
 else
-    MLX_FLAGS = -L$(MLX42_DIR) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit
+    MLX42_FLAGS = -L/opt/homebrew/Cellar/glfw/3.4/lib -lglfw \
+                  -L$(MLX42_DIR)/build_macos -lmlx42 \
+                  -framework Cocoa -framework OpenGL -framework IOKit
+    INCLUDE = -I$(MLX42_DIR)/include/MLX42 \
+              -I/opt/homebrew/Cellar/glfw/3.4/include \
+              -I$(LIBFT_DIR)
 endif
 
 # Sources
-SRC = src/so_long.c # Añade aquí más archivos .c si tienes
+SRC = src/so_long.c
 OBJS = $(SRC:.c=.o)
 
-# Linking and building the executable
-INCLUDE = -I$(MLX42_DIR)/include/MLX42 -I$(LIBFT_DIR) -L$(LIBFT_DIR) -lft
-
+# Build the executable
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) $(OBJS) $(INCLUDE) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(INCLUDE) $(MLX42_FLAGS) -o $(NAME)
 	@echo "✅ Compilation finished!"
+
+# Build MLX42 based on the OS
+$(MLX42_BUILD_LINUX) $(MLX42_BUILD_MACOS):
+	@echo "⚙️  Compiling MLX42 for $(UNAME_S)..."
+	@bash build_mlx42.sh
 
 # Recompile object files if so_long.h changes
 $(OBJS): includes/so_long.h
@@ -37,7 +48,7 @@ all: $(NAME)
 
 # Compile object files
 %.o: %.c
-	@$(CC) $(CFLAGS) -I$(MLX42_DIR)/include/MLX42 -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 # Clean objects
 clean:
@@ -54,3 +65,4 @@ re: fclean all
 
 # Key words
 .PHONY: all clean fclean re
+
