@@ -1,0 +1,7 @@
+/home/ccarro-d/Desktop/so_long/MLX42/build_linux/CMakeFiles/mlx42.dir
+/home/ccarro-d/Desktop/so_long/MLX42/build_linux/CMakeFiles/edit_cache.dir
+/home/ccarro-d/Desktop/so_long/MLX42/build_linux/CMakeFiles/rebuild_cache.dir
+/home/ccarro-d/Desktop/so_long/MLX42/build_linux/CMakeFiles/list_install_components.dir
+/home/ccarro-d/Desktop/so_long/MLX42/build_linux/CMakeFiles/install.dir
+/home/ccarro-d/Desktop/so_long/MLX42/build_linux/CMakeFiles/install/local.dir
+/home/ccarro-d/Desktop/so_long/MLX42/build_linux/CMakeFiles/install/strip.dir

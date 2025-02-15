@@ -35,7 +35,7 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) $(INCLUDE) $(MLX42_FLAGS) -o $(NAME)
 	@echo "✅ Compilation finished!"
 
-# Build MLX42 based on the OS
+# Build MLX42 based on the OS (if necessary)
 $(MLX42_BUILD_LINUX) $(MLX42_BUILD_MACOS):
 	@echo "⚙️  Compiling MLX42 for $(UNAME_S)..."
 	@bash build_mlx42.sh
