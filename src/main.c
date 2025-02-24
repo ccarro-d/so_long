@@ -6,7 +6,7 @@
 /*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/17 18:53:21 by cesar            ###   ########.fr       */
+/*   Updated: 2025/02/24 00:12:27 by cesar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,26 @@ void	print_error(char *error_explained, int error_code)
 	exit(error_code);
 }
 
+void    free_matrix(char **matrix)
+{
+    int i;
+    
+    i = 0;
+    while (matrix[i])
+    {
+        free(matrix[i]);
+        i++;
+    }
+    free(matrix);
+    return;
+}
+
 int main(int argc, char **argv)
 {
-    t_map   map; //TODO: ¿Función para inicializar?
+    t_map   map;
     
     if (argc != 2)
         print_error("Error > Correct usage: /so_long <map_file.ber>\n", 1);
     initialize_map(&map, argv[1]);
-    print_map(map.grid); // Verificamos el contenido del mapa
     return (0);
 }

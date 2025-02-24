@@ -26,7 +26,7 @@ else
 endif
 
 # Sources
-SRC = gnl/get_next_line.c gnl/get_next_line_utils.c src/main.c src/map.c
+SRC = gnl/get_next_line.c gnl/get_next_line_utils.c src/main.c src/map.c src/map_checks.c
 OBJS = $(SRC:.c=.o)
 
 # Build the executable

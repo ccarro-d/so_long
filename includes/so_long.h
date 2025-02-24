@@ -6,7 +6,7 @@
 /*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 14:36:17 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/17 18:30:42 by cesar            ###   ########.fr       */
+/*   Updated: 2025/02/24 01:03:44 by cesar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,28 @@ typedef struct s_map
     size_t  collectibles; // Número de coleccionables 'C'
     size_t  player_x;  // Coordenada x del jugador (P)
     size_t  player_y;  // Coordenada y del jugador (P)
-    bool    has_exit;  // Indica si el mapa tiene una salida 'E'
+    bool    exit;  // Indica si el mapa tiene una salida 'E'
 } t_map;
 
 // Main functions
 int		main(int argc, char **argv);
 void	print_error(char *error_explained, int error_code);
+void    free_matrix(char **matrix);
 
 // Map functions
+void    initialize_map(t_map *map, char *map_file);
 size_t	count_lines(char *map_file);
-char	**read_map(char *map_file, size_t *map_height);
+char	**read_map(char *map_file, size_t map_height);
+size_t check_lines_length(char **map_grid);
+size_t  count_collectibles(char **map_grid);
+void    player_position(char **map_grid, size_t *player_x, size_t *player_y);
 void	print_map(char **map_grid);
+bool    has_exit(char **map_grid);
+
+void    map_checks(t_map *map, char *map_file);
+void    wall_checker(char **map_grid, size_t map_height, size_t map_width);
+void    elements_checker(char **map_grid);
+bool    accesibility_checker(t_map *map, char *map_file);
+void    flood_fill(char **map_copy, size_t player_x, size_t player_y, t_map *map);
 
 #endif
