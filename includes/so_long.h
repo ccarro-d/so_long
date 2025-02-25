@@ -6,7 +6,7 @@
 /*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 14:36:17 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/24 01:03:44 by cesar            ###   ########.fr       */
+/*   Updated: 2025/02/25 00:37:41 by cesar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,39 @@
 # include <stddef.h>    // Para usar size_t
 # include <errno.h>     // Para códigos de error
 
-// Map structure
+//Structures
 typedef struct s_map
 {
-    char    **grid;    // Matriz 2D de caracteres que representa el mapa (cada celda contiene '0', '1', 'P', 'C', 'E')
-    size_t  width;     // Anchura del mapa
-    size_t  height;    // Altura del mapa
-    size_t  collectibles; // Número de coleccionables 'C'
-    size_t  player_x;  // Coordenada x del jugador (P)
-    size_t  player_y;  // Coordenada y del jugador (P)
-    bool    exit;  // Indica si el mapa tiene una salida 'E'
+    char    **grid;         // Matriz 2D de caracteres que representa el mapa (cada celda contiene '0', '1', 'P', 'C', 'E')
+    size_t  width;          // Anchura del mapa
+    size_t  height;         // Altura del mapa
+size_t  collectibles;       // Número de coleccionables 'C'
+    size_t  player_x;       // Coordenada x del jugador (P)
+    size_t  player_y;       // Coordenada y del jugador (P)
+    bool    exit;           // Indica si el mapa tiene una salida 'E'
 } t_map;
+
+typedef struct s_images
+{
+    mlx_texture_t   *wall_texture;
+    mlx_texture_t   *floor_texture;
+    mlx_texture_t   *player_texture;
+    mlx_texture_t   *collectible_texture;
+    mlx_texture_t   *exit_texture;
+    mlx_image_t     *wall_image;
+    mlx_image_t     *floor_image;
+    mlx_image_t     *player_image;
+    mlx_image_t     *collectible_image;
+    mlx_image_t     *exit_image;
+} t_images;
+
+typedef struct s_game
+{
+    t_map       map;        // Datos del mapa
+    t_images    textures;   // Imágenes asociadas
+    mlx_t       *mlx;       // Conexión con MLX42
+    mlx_image_t *img;       // Imagen principal para renderizar
+} t_game;
 
 // Main functions
 int		main(int argc, char **argv);

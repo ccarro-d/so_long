@@ -6,7 +6,7 @@
 /*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/24 01:35:20 by cesar            ###   ########.fr       */
+/*   Updated: 2025/02/24 18:56:47 by cesar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char    **read_map(char *map_file, size_t map_height) // Matriz con el mapa
     return (grid);
 }
 
-/*void    print_map(char **map_grid) // Verificamos el contenido del mapa
+void    print_map(char **map_grid) // Verificamos el contenido del mapa
 {
     int i;
 
@@ -62,7 +62,7 @@ char    **read_map(char *map_file, size_t map_height) // Matriz con el mapa
     }
     write (1, "\n", 1); //borrar
     return ;
-}*/
+}
 
 size_t check_lines_length(char **map_grid) // Para saber si todas las filas son de igual longitud
 {

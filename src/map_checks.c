@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   map_checks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/24 01:33:36 by cesar            ###   ########.fr       */
+/*   Updated: 2025/02/24 18:57:05 by cesar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,14 @@ void    elements_checker(char **map_grid)
         {
             if (map_grid[i][j] != '1' && map_grid[i][j] != '0' && map_grid[i][j] != 'P' && map_grid[i][j] != 'C' && map_grid[i][j] != 'E' && map_grid[i][j] != '\n')
             {
-                printf("i =%d & j=%d\n", i, j); //TODO: Comentar
-                print_error("Error > Invalid elements found in the map", 255);
+                ft_putstr_fd("y = ", 2);
+                ft_putnbr_fd(i, 2);
+                ft_putstr_fd("; x = ", 2);
+                ft_putnbr_fd(j, 2);
+                ft_putstr_fd("; element = ", 2);
+                ft_putchar_fd(map_grid[i][j], 2);
+                ft_putchar_fd('\n', 2);
+                print_error("Error > Invalid element found in the map", 255);
             }    
             j++;
         }
@@ -67,13 +73,13 @@ void    elements_checker(char **map_grid)
 void    flood_fill(char **map_copy, size_t player_x, size_t player_y, t_map *map)
 {
     // Dentro del mapa
-    if (player_x < 0 || player_x > map->width || player_y < 0 || player_y > map->height)
+    if (player_x < 0 || player_x >= map->width || player_y < 0 || player_y >= map->height)
         return ;
     // Espacio válido
-    if (map_copy[player_x][player_y] == '1' || map_copy[player_x][player_y] == 'V')
+    if (map_copy[player_y][player_x] == '1' || map_copy[player_y][player_x] == 'V')
         return ;
     // Marcar celda como visitada
-    map_copy[player_x][player_y] = 'V';
+    map_copy[player_y][player_x] = 'V';
     // Recursividad
     flood_fill(map_copy, player_x + 1, player_y, map); // Derecha
     flood_fill(map_copy, player_x - 1, player_y, map); // Izquierda
