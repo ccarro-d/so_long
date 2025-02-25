@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/25 01:24:54 by cesar            ###   ########.fr       */
+/*   Updated: 2025/02/25 17:16:49 by ccarro-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	print_error(char *error_explained, int error_code)
 {
-	ft_putstr_fd(error_explained, STDERR_FILENO);
+    ft_putstr_fd("Error\n", STDERR_FILENO);
+    ft_putstr_fd(error_explained, STDERR_FILENO);
 	exit(error_code);
 }
 
@@ -40,14 +41,14 @@ void    load_textures(t_images *textures, mlx_t *mlx)
     textures->player_texture = mlx_load_png("./textures/player.png");
     textures->wall_texture = mlx_load_png("./textures/wall.png");
     if (!textures->collectible_texture || !textures->exit_texture || !textures->floor_texture || !textures->player_texture || !textures->wall_texture)
-        print_error("Error > Textures could not be loaded\n", 1);
+        print_error("> Textures could not be loaded\n", 1);
     textures->collectible_image = mlx_texture_to_image(mlx, textures->collectible_texture);
     textures->exit_image = mlx_texture_to_image(mlx, textures->exit_texture);
     textures->floor_image = mlx_texture_to_image(mlx, textures->floor_texture);
     textures->player_image = mlx_texture_to_image(mlx, textures->player_texture);
     textures->wall_image = mlx_texture_to_image(mlx, textures->wall_texture);
     if (!textures->collectible_image || !textures->exit_image || !textures->floor_image || !textures->player_image || !textures->wall_image)
-        print_error("Error > Images could not be loaded\n", 1);
+        print_error("> Images could not be loaded\n", 1);
     mlx_delete_texture(textures->collectible_texture);
     mlx_delete_texture(textures->exit_texture);
     mlx_delete_texture(textures->floor_texture);
@@ -83,20 +84,25 @@ void    render_map(t_map *map, t_images *textures, mlx_t *mlx)
     }
     return ;
 }
+/*handle_input(mlx_key_data_t keydata, void *param)
+{
+    
+}*/
 
 int main(int argc, char **argv)
 {
     t_game   game;
     
     if (argc != 2)
-        print_error("Error > Correct usage: /so_long <map_file.ber>\n", 1);
+        print_error("> Correct usage: /so_long <map_file.ber>\n", 1);
     initialize_map(&game.map, argv[1]);
     game.mlx = mlx_init(game.map.width * 64, game.map.height *64, "so_long", false);
     if (!game.mlx)
-        print_error("Error > MLX42 initialization failed", 1);
+        print_error("> MLX42 initialization failed", 1);
     load_textures(&game.textures, game.mlx);
     render_map(&game.map, &game.textures, game.mlx);
     mlx_loop(game.mlx);
+    //mlx_key_hook(game.mlx, handle_input, &game);
     mlx_terminate(game.mlx);
     return (0);
 }

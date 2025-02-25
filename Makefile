@@ -52,13 +52,13 @@ all: $(NAME)
 
 # Clean objects
 clean:
-	@make clean -C $(LIBFT_DIR)
+	@make -s clean -C $(LIBFT_DIR)
 	@rm -f $(OBJS)
 	@echo "🧹 Objects cleaned!"
 
 # Clean objects and executable
 fclean: clean
-	@make fclean -C $(LIBFT_DIR)
+	@make -s fclean -C $(LIBFT_DIR)
 	@rm -f $(NAME)
 	@echo "🧹 Executable cleaned!"
 

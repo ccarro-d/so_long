@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 19:50:45 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/17 16:50:05 by cesar            ###   ########.fr       */
+/*   Updated: 2025/02/25 16:18:42 by ccarro-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,11 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX FOPEN_MAX
+# endif
+
 # include <unistd.h>
 # include <stdio.h>
 # include <string.h>
