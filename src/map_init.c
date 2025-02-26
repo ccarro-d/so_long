@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/26 17:07:59 by cesar            ###   ########.fr       */
+/*   Updated: 2025/02/26 18:39:51 by ccarro-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	count_lines(char *map_file) // Para saber el alto del mapa
 {
-	int fd;
-	size_t lines;
-	char buf[BUFFER_SIZE];
-	char prev;
+	int		fd;
+	size_t	lines;
+	char	buf[BUFFER_SIZE];
+	char	prev;
 
 	fd = open(map_file, O_RDONLY);
 	lines = 0;
@@ -33,18 +33,26 @@ size_t	count_lines(char *map_file) // Para saber el alto del mapa
 
 char	**read_map(char *map_file, size_t map_height) // Matriz con el mapa
 {
-	int fd;
-	char **grid;
-	int i;
-	char *line;
+	int		fd;
+	char	**grid;
+	int		i;
+	int		j;
+	char	*line;
 
 	fd = open(map_file, O_RDONLY);
 	grid = (char **)ft_calloc(sizeof(char *), map_height + 1);
 	if (fd < 0 || !grid)
 		return (NULL);
 	i = 0;
-	while ((line = get_next_line(fd)))
-		grid[i++] = line;
+	j = 1;
+	while (j)
+	{
+		line = get_next_line(fd);
+		if (line)
+			grid[i++] = line;
+		else
+			j = 0;
+	}
 	grid[i] = NULL;
 	close(fd);
 	return (grid);
@@ -53,9 +61,9 @@ char	**read_map(char *map_file, size_t map_height) // Matriz con el mapa
 // Para saber si todas las filas son de igual longitud
 size_t	check_lines_length(char **map_grid)
 {
-	int i;
-	size_t current;
-	size_t previous;
+	int		i;
+	size_t	current;
+	size_t	previous;
 
 	i = 0;
 	if (!map_grid[i])
@@ -100,9 +108,9 @@ void	initialize_map(t_map *map, char *map_file)
 	// printf("player position x=%zu & y=%zu\n",map->player_x, map->player_y);
 	if (!map->player_x && !map->player_y)
 		print_error("> No playable character found", 1);
-    map->exit_x = 0;
-    map->exit_y = 0;
-    exit_position(map->grid, &map->exit_x, &map->exit_y);
+	map->exit_x = 0;
+	map->exit_y = 0;
+	exit_position(map->grid, &map->exit_x, &map->exit_y);
 	// printf("exit position x=%zu & y=%zu\n",map->exit_x, map->exit_y);
 	if (!map->exit_x && !map->exit_y)
 		print_error("> No exit found", 1);

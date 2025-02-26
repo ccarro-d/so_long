@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_elements.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/26 17:06:50 by cesar            ###   ########.fr       */
+/*   Updated: 2025/02/26 18:29:52 by ccarro-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int	count_collectibles(char **map_grid) // Para saber si hay coleccionables
 {
-	int i;
-	int j;
-	int collectibles;
+	int	i;
+	int	j;
+	int	collectibles;
 
 	i = 0;
 	collectibles = 0;
-
 	while (map_grid[i])
 	{
 		j = 0;
