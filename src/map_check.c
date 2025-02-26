@@ -6,7 +6,7 @@
 /*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/26 18:58:14 by ccarro-d         ###   ########.fr       */
+/*   Updated: 2025/02/26 21:28:28 by ccarro-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,21 @@ void	wall_checker(char **map_grid, size_t map_height, size_t map_width)
 	while (i < map_width - 1)
 	{
 		if (map_grid[0][i] != '1')
-			print_error("> Map is not surrounded by walls", 255);
+			print_error("> Map is not surrounded by walls", 1);
 		i++;
 	}
 	j = 1;
 	while (j < map_height - 1)
 	{
 		if (map_grid[j][0] != '1' || map_grid[j][map_width - 1] != '1')
-			print_error("> Map is not surrounded by walls", 255);
+			print_error("> Map is not surrounded by walls", 1);
 		j++;
 	}
 	i = 0;
 	while (i < map_width - 1)
 	{
 		if (map_grid[j][i] != '1')
-			print_error("> Map is not surrounded by walls", 255);
+			print_error("> Map is not surrounded by walls", 1);
 		i++;
 	}
 	return ;
@@ -123,7 +123,7 @@ void	map_checks(t_map *map, char *map_file)
 	elements_checker(map->grid);
 	// printf("Map elements properly checked\n");
 	if (accesibility_checker(map, map_file) == false)
-		print_error("> Collectibles or exit are not accesible", 255);
+		print_error("> Collectibles or exit are not accesible", 1);
 	/*else
 		printf("Collectibles and exit accesibility checked\n");*/
 	return ;

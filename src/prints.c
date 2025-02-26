@@ -6,7 +6,7 @@
 /*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/26 19:00:27 by ccarro-d         ###   ########.fr       */
+/*   Updated: 2025/02/26 21:38:53 by ccarro-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	print_invalid_element(int y, int x, char invalid_element)
 	ft_putstr_fd("; element = ", STDERR_FILENO);
 	ft_putchar_fd(invalid_element, STDERR_FILENO);
 	ft_putchar_fd('\n', STDERR_FILENO);
-	print_error("> Invalid element found in the map", 255);
+	print_error("> Invalid element found in the map", 1);
 	return ;
 }
 
@@ -61,6 +61,7 @@ void	print_moves(int movements, mlx_t *mlx, t_map map,
 	ft_putchar_fd('\n', STDOUT_FILENO);
 	movements_str = ft_itoa(movements);
 	concat_string = ft_strjoin("Movements made = ", movements_str);
+	free(movements_str);
 	if (*moves_text)
 		mlx_delete_image(mlx, *moves_text);
 	*moves_text = mlx_put_string(mlx, concat_string, (int)(map.width * 64

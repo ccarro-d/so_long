@@ -6,7 +6,7 @@
 /*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/26 18:29:52 by ccarro-d         ###   ########.fr       */
+/*   Updated: 2025/02/26 21:38:21 by ccarro-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	player_position(char **map_grid, size_t *player_x, size_t *player_y)
 				players++;
 			}
 			if (players > 1)
-				print_error("> Only one playable character is allowed", 255);
+				print_error("> Only one playable character is allowed", 1);
 			j++;
 		}
 		i++;
@@ -85,7 +85,7 @@ void	exit_position(char **map_grid, size_t *exit_x, size_t *exit_y)
 				exits++;
 			}
 			if (exits > 1)
-				print_error("> Only one exit is allowed", 255);
+				print_error("> Only one exit is allowed", 1);
 			j++;
 		}
 		i++;
