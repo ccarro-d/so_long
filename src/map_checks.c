@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/25 17:15:47 by ccarro-d         ###   ########.fr       */
+/*   Updated: 2025/02/26 02:17:09 by cesar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ void    elements_checker(char **map_grid)
         {
             if (map_grid[i][j] != '1' && map_grid[i][j] != '0' && map_grid[i][j] != 'P' && map_grid[i][j] != 'C' && map_grid[i][j] != 'E' && map_grid[i][j] != '\n')
             {
-                ft_putstr_fd("y = ", 2);
-                ft_putnbr_fd(i, 2);
-                ft_putstr_fd("; x = ", 2);
-                ft_putnbr_fd(j, 2);
-                ft_putstr_fd("; element = ", 2);
-                ft_putchar_fd(map_grid[i][j], 2);
-                ft_putchar_fd('\n', 2);
+                ft_putstr_fd("y = ", STDERR_FILENO);
+                ft_putnbr_fd(i, STDERR_FILENO);
+                ft_putstr_fd("; x = ", STDERR_FILENO);
+                ft_putnbr_fd(j, STDERR_FILENO);
+                ft_putstr_fd("; element = ", STDERR_FILENO);
+                ft_putchar_fd(map_grid[i][j], STDERR_FILENO);
+                ft_putchar_fd('\n', STDERR_FILENO);
                 print_error("> Invalid element found in the map", 255);
             }    
             j++;

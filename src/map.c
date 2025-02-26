@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/25 17:15:02 by ccarro-d         ###   ########.fr       */
+/*   Updated: 2025/02/26 02:58:22 by cesar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	print_map(char **map_grid) // Verificamos el contenido del mapa
 	return ;
 }
 
+// Para saber si todas las filas son de igual longitud
 size_t	check_lines_length(char **map_grid)
-		// Para saber si todas las filas son de igual longitud
 {
 	int i;
 	size_t current;
@@ -91,11 +91,11 @@ size_t	check_lines_length(char **map_grid)
 	return (current);
 }
 
-size_t	count_collectibles(char **map_grid) // Para saber si hay coleccionables
+int	count_collectibles(char **map_grid) // Para saber si hay coleccionables
 {
 	int i;
 	int j;
-	size_t collectibles;
+	int collectibles;
 
 	i = 0;
 	collectibles = 0;
@@ -144,34 +144,33 @@ void	player_position(char **map_grid, size_t *player_x, size_t *player_y)
 	return ;
 }
 
-bool	has_exit(char **map_grid)
-		// Para comprobar si hay salida y si solo es una
+void	exit_position(char **map_grid, size_t *exit_x, size_t *exit_y)
 {
-	int i;
-	int j;
-	int exits;
+	int	exits;
+	int	i;
+	int	j;
 
 	i = 0;
 	exits = 0;
-
 	while (map_grid[i])
 	{
 		j = 0;
 		while (map_grid[i][j])
 		{
+			// printf("exit_position=%c\n", map_grid[*exit_y][*exit_x]);
 			if (map_grid[i][j] == 'E')
+			{
+				*exit_x = j;
+				*exit_y = i;
 				exits++;
+			}
+			if (exits > 1)
+				print_error("> Only one exit is allowed", 255);
 			j++;
 		}
 		i++;
 	}
-	if (exits == 1)
-		return (true);
-	else if (exits == 0)
-		return (false);
-	else
-		print_error("> Only one exit is allowed", 255);
-	return (false);
+	return ;
 }
 
 void	initialize_map(t_map *map, char *map_file)
@@ -198,10 +197,16 @@ void	initialize_map(t_map *map, char *map_file)
 	// printf("player position x=%zu & y=%zu\n",map->player_x, map->player_y);
 	if (!map->player_x && !map->player_y)
 		print_error("> No playable character found", 1);
-	map->exit = has_exit(map->grid);
-	// printf("has exit = %d\n", map->exit);
+    map->exit_x = 0;
+    map->exit_y = 0;
+    exit_position(map->grid, &map->exit_x, &map->exit_y);
+	// printf("exit position x=%zu & y=%zu\n",map->exit_x, map->exit_y);
+	if (!map->exit_x && !map->exit_y)
+		print_error("> No exit found", 1);
+	/*map->exit = has_exit(map->grid);
+	printf("has exit = %d\n", map->exit);
 	if (!map->exit)
-		print_error("> No exits were found", 1);
+		print_error("> No exits were found", 1);*/
 	map_checks(map, map_file);
 	return ;
 }
