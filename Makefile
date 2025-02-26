@@ -7,7 +7,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 # Directories
 LIBFT_DIR = libft/
-GNL_DIR = libft/
+GNL_DIR = gnl/
 MLX42_DIR = MLX42/
 MLX42_BUILD_LINUX = $(MLX42_DIR)/build_linux/libmlx42.a
 MLX42_BUILD_MACOS = $(MLX42_DIR)/build_macos/libmlx42.a
