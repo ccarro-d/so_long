@@ -6,11 +6,11 @@
 /*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/26 02:17:09 by cesar            ###   ########.fr       */
+/*   Updated: 2025/02/26 16:55:35 by cesar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../include/so_long.h"
 
 void    wall_checker(char **map_grid, size_t map_height, size_t map_width)
 {

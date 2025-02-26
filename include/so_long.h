@@ -6,7 +6,7 @@
 /*   By: cesar <cesar@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 14:36:17 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/26 02:58:30 by cesar            ###   ########.fr       */
+/*   Updated: 2025/02/26 17:19:41 by cesar            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,28 +65,43 @@ typedef struct s_game
     mlx_image_t *moves_text;
 }					t_game;
 
-// Main functions
-int					main(int argc, char **argv);
-void				print_error(char *error_explained, int error_code);
-void				free_matrix(char **matrix);
+// main.c function
+void	free_matrix(char **matrix);
+int		main(int argc, char **argv);
 
-// Map functions
-void				initialize_map(t_map *map, char *map_file);
-size_t				count_lines(char *map_file);
-char				**read_map(char *map_file, size_t map_height);
-size_t				check_lines_length(char **map_grid);
-int				count_collectibles(char **map_grid);
-void				player_position(char **map_grid, size_t *player_x,
-						size_t *player_y);
-void				print_map(char **map_grid);
-bool				has_exit(char **map_grid);
+// prints.c functions
+void	print_error(char *error_explained, int error_code);
+void    print_moves(int movements, mlx_t *mlx, size_t map_height, size_t map_width, mlx_image_t **moves_text);
+void    print_collectibles(int  map_collectibles);
+void	print_map(char **map_grid);
 
-void				map_checks(t_map *map, char *map_file);
-void				wall_checker(char **map_grid, size_t map_height,
-						size_t map_width);
-void				elements_checker(char **map_grid);
-bool				accesibility_checker(t_map *map, char *map_file);
-void				flood_fill(char **map_copy, size_t player_x,
-						size_t player_y, t_map *map);
+// map_init.c functions
+void	initialize_map(t_map *map, char *map_file);
+size_t	count_lines(char *map_file);
+char	**read_map(char *map_file, size_t map_height);
+size_t	check_lines_length(char **map_grid);
+
+// map_elements.c functions
+int		count_collectibles(char **map_grid);
+void	player_position(char **map_grid, size_t *player_x, size_t *player_y);
+void	exit_position(char **map_grid, size_t *exit_x, size_t *exit_y);
+
+// map_check.c functions
+void	map_checks(t_map *map, char *map_file);
+void	wall_checker(char **map_grid, size_t map_height, size_t map_width);
+void	elements_checker(char **map_grid);
+bool	accesibility_checker(t_map *map, char *map_file);
+void	flood_fill(char **map_copy, size_t player_x, size_t player_y, t_map *map);
+
+// so_long.c functions
+void    load_textures(t_images *textures, mlx_t *mlx);
+void    render_map(t_map *map, t_images *textures, mlx_t *mlx);
+void    move_player(t_game *game, size_t new_y, size_t new_x);
+void    handle_input(mlx_key_data_t keydata, void *param);
+
+// player_collectibles.c functions
+void    remove_player_collectibles(mlx_t* mlx, mlx_image_t* player_img, mlx_image_t* collectible_img);
+void    render_player_collectibles(t_map *map, t_images *textures, mlx_t *mlx);
+void    update_player_collectibles(t_map *map, t_images *textures, mlx_t *mlx);
 
 #endif

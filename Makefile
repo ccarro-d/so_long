@@ -26,7 +26,9 @@ else
 endif
 
 # Sources
-SRC = gnl/get_next_line.c gnl/get_next_line_utils.c src/main.c src/map.c src/map_checks.c
+SRC = src/main.c src/prints.c src/map_init.c src/map_elements.c src/map_check.c \
+	  src/so_long.c src/player_collectibles.c gnl/get_next_line.c gnl/get_next_line_utils.c
+
 OBJS = $(SRC:.c=.o)
 
 # Build the executable
@@ -41,7 +43,7 @@ $(MLX42_BUILD_LINUX) $(MLX42_BUILD_MACOS):
 	@bash build_mlx42.sh
 
 # Recompile object files if so_long.h changes
-$(OBJS): includes/so_long.h
+$(OBJS): include/so_long.h
 
 # Default target for compilation
 all: $(NAME)
