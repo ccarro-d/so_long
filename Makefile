@@ -3,14 +3,14 @@ NAME = so_long
 
 # Compilation
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra #-fsanitize=leak
 
 # Directories
 LIBFT_DIR = libft/
 GNL_DIR = gnl/
 MLX42_DIR = MLX42/
-MLX42_BUILD_LINUX = $(MLX42_DIR)/build_linux/libmlx42.a
-MLX42_BUILD_MACOS = $(MLX42_DIR)/build_macos/libmlx42.a
+MLX42_BUILD_LINUX = $(MLX42_DIR)/$(BUILD_DIR)/libmlx42.a
+MLX42_BUILD_MACOS = $(MLX42_DIR)/$(BUILD_DIR)/libmlx42.a
 
 # Detecting the OS for MLX42 and GLFW
 UNAME_S := $(shell uname -s)

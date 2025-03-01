@@ -6,7 +6,7 @@
 /*   By: ccarro-d <ccarro-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 12:10:13 by ccarro-d          #+#    #+#             */
-/*   Updated: 2025/02/26 18:39:51 by ccarro-d         ###   ########.fr       */
+/*   Updated: 2025/02/26 22:31:15 by ccarro-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ size_t	count_lines(char *map_file) // Para saber el alto del mapa
 	char	prev;
 
 	fd = open(map_file, O_RDONLY);
+	if (fd < 0)
+		print_error("> File doesn't exist or couldn't be opened\n", 1);
 	lines = 0;
 	while (read(fd, buf, BUFFER_SIZE) > 0)
 	{
