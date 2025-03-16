@@ -32,12 +32,12 @@ SRC = src/main.c src/prints.c src/map_init.c src/map_elements.c src/map_check.c 
 OBJS = $(SRC:.c=.o)
 
 # Build the executable
-$(NAME): $(OBJS)
+$(NAME): $(MLX42_BUILD_LINUX) $(MLX42_BUILD_MACOS) $(OBJS)
 	@make -C $(LIBFT_DIR) --silent
 	@$(CC) $(CFLAGS) $(OBJS) $(INCLUDE) -L$(LIBFT_DIR) -lft $(MLX42_FLAGS) -o $(NAME)
 	@echo "✅ Compilation finished!"
 
-# Build MLX42 based on the OS (if necessary)
+# Ensure MLX42 is built before compiling so_long
 $(MLX42_BUILD_LINUX) $(MLX42_BUILD_MACOS):
 	@echo "⚙️  Compiling MLX42 for $(UNAME_S)..."
 	@bash build_mlx42.sh
